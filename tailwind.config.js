@@ -29,6 +29,7 @@ module.exports = withMT({
             },
             spacing: {
                 'half-minus-15': 'calc(50% - 15px)',
+                'full-plus-13': 'calc(100% + 13px)',
             },
         },
     },

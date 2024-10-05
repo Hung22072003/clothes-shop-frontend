@@ -5,6 +5,8 @@ import ProductCard from '../components/ProductCard';
 import { getCategoryById } from '../api/services/CategoryService';
 import { getProductByCategory } from '../api/services/ProductService';
 const Collection = () => {
+    const [visibleButton, setVisibleButton] = useState(true);
+    const [page, setPage] = useState(0);
     const [value, setValue] = useState('manual');
     const { collectionId } = useParams();
     const [category, setCategory] = useState();
@@ -20,12 +22,17 @@ const Collection = () => {
             setCategory(response.data.result);
         }
     };
-
+    useEffect(() => {
+        fetchProducts();
+    }, [page]);
     const fetchProducts = async () => {
-        const response = await getProductByCategory(collectionId);
+        const response = await getProductByCategory(collectionId, page, 10);
         if (response.status == 200) {
-            setProducts(response.data.result);
-            setCollectionSorted(response.data.result);
+            if (response.data.result.pagination.current_page === response.data.result.pagination.total_pages - 1) {
+                setVisibleButton(false);
+            }
+            setProducts([...products, ...response.data.result.data]);
+            setCollectionSorted([...products, ...response.data.result.data]);
         }
     };
 
@@ -121,13 +128,27 @@ const Collection = () => {
                     </select>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                    {collectionSorted.map((product) => (
-                        <div key={product.id}>
-                            <ProductCard product={product} />
+                {collectionSorted.length !== 0 && (
+                    <div>
+                        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                            {collectionSorted.map((product) => (
+                                <div key={product.id}>
+                                    <ProductCard product={product} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                        {visibleButton && (
+                            <div className="flex items-center justify-center">
+                                <button
+                                    onClick={() => setPage(page + 1)}
+                                    className="text-md mx-auto my-[15px] rounded-[8px] border-2 bg-black p-[7px_27px] font-light text-white shadow-lg"
+                                >
+                                    Xem thêm
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         )
     );

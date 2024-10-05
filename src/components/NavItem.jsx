@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
 
 const NavItem = ({ id, name, subcategories }) => {
     return (
-        <NavLink to={id === 2 ? '#' : `/collections/${id}`} key={id}>
+        <a href={id === 2 ? '#' : `/collections/${id}`} key={id}>
             <div className="group relative flex items-center gap-2 p-4">
                 <span
                     className={`text-[12px] font-bold uppercase ${name === 'Outlet' ? 'text-[#F50000]' : 'group-hover:text-[#FB8500]'} `}
@@ -26,18 +25,18 @@ const NavItem = ({ id, name, subcategories }) => {
                 {subcategories && (
                     <ul className="absolute left-2 top-[100%] z-50 hidden min-w-40 flex-col bg-white shadow-[0px_2px_20px_rgba(0,0,0,0.2)] group-hover:flex">
                         {subcategories.map((item) => (
-                            <Link
+                            <a
                                 key={item.id}
-                                to={`collections/${item.id}`}
+                                href={`/collections/${item.id}`}
                                 className="block p-2 font-sans text-[12px] font-bold uppercase hover:text-[#FB8500]"
                             >
                                 {item.name}
-                            </Link>
+                            </a>
                         ))}
                     </ul>
                 )}
             </div>
-        </NavLink>
+        </a>
     );
 };
 

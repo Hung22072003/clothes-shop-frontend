@@ -160,3 +160,22 @@ a {
     line-height: 22px;
     list-style: initial;
 }
+
+.cart-scroll::-webkit-scrollbar {
+    width: 5px;
+    background-color: #8b8b8b;
+}
+.cart-scroll::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border: none;
+}
+
+.cart-dropdown::before {
+    content: '';
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -20px;
+    left: calc(100% - 60px);
+}

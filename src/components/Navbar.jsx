@@ -25,7 +25,7 @@ const Navbar = () => {
         }
     };
     return (
-        <div className="fixed left-0 right-0 top-[76px] z-50 hidden bg-white shadow-[0_1px_5px_2px_rgba(0,0,0,0.15)] lg:block">
+        <div className="fixed left-0 right-0 top-[76px] z-[1000] hidden bg-white shadow-[0_1px_5px_2px_rgba(0,0,0,0.15)] lg:block">
             <div className="mx-auto px-4 md:px-8 lg:max-w-[1200px]">
                 <ul className="flex items-center justify-center gap-2">
                     {categories.map((item) => (

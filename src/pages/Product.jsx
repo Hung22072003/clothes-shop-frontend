@@ -4,11 +4,9 @@ import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getProductById } from '../api/services/ProductService';
 import { getAllVoucher } from '../api/services/VoucherService';
-const Product = () => {
+const Product = ({ setNumberOfCarts }) => {
     const { productId } = useParams();
     const [product, setProduct] = useState();
-    const [colors, setColors] = useState();
-    const [sizes, setSizes] = useState();
     const [currentColor, setCurrentColor] = useState();
     const [currentImage, setCurrentImage] = useState();
     const [quantity, setQuantity] = useState(1);
@@ -180,6 +178,35 @@ const Product = () => {
             return price / 1000 + 'K';
         }
         return price.toString();
+    };
+
+    const handleAddProductToCart = () => {
+        const addedProduct = {
+            id: product.id,
+            name: product.name,
+            color: product.colors.find((color) => color.id === currentColor).name,
+            size: choiceSize,
+            image: product.images[0],
+            sell_price: product.sell_price,
+            original_price: product.original_price,
+            quantity: quantity,
+        };
+
+        const carts = JSON.parse(localStorage.getItem('carts')) ?? [];
+        const existCarts = carts.filter(
+            (cart) => cart.id == addedProduct.id && cart.color == addedProduct.color && cart.size == addedProduct.size,
+        );
+        if (existCarts.length == 0) {
+            localStorage.setItem('carts', JSON.stringify([addedProduct, ...carts]));
+        } else {
+            const newCarts = carts.map((cart) => {
+                if (cart.id == addedProduct.id && cart.color == addedProduct.color && cart.size == addedProduct.size)
+                    cart.quantity += addedProduct.quantity;
+                return cart;
+            });
+            localStorage.setItem('carts', JSON.stringify(newCarts));
+        }
+        setNumberOfCarts((prev) => prev + addedProduct.quantity);
     };
     return (
         product && (
@@ -377,7 +404,10 @@ const Product = () => {
                                         (value) => value.type === choiceSize && value.quantity > 0,
                                     ) ? (
                                         <div className="flex items-center">
-                                            <button className="mr-[15px] h-[40px] w-half-minus-15 border-[1px] border-black bg-black text-[14px] font-bold text-white hover:bg-white hover:text-black">
+                                            <button
+                                                onClick={handleAddProductToCart}
+                                                className="mr-[15px] h-[40px] w-half-minus-15 border-[1px] border-black bg-black text-[14px] font-bold text-white hover:bg-white hover:text-black"
+                                            >
                                                 Thêm vào giỏ
                                             </button>
                                             <button className=" mr-[15px] h-[40px] w-half-minus-15 border-[1px] border-black bg-white text-[14px] font-bold hover:bg-black hover:text-white">

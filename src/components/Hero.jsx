@@ -30,7 +30,7 @@ const Hero = ({ id_category, bgColor, style }) => {
         const response = await getProductByCategory(id_category);
         // console.log(response.data);
         if (response.status == 200) {
-            setProducts(response.data.result);
+            setProducts(response.data.result.data);
         }
     };
     function SampleNextArrow(props) {

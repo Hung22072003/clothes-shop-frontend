@@ -22,7 +22,7 @@ const NewProductCollection = ({ id_category }) => {
     const fetchProducts = async () => {
         const response = await getProductByCategory(id_category);
         if (response.status == 200) {
-            setProducts(response.data.result);
+            setProducts(response.data.result.data);
         }
     };
     return (

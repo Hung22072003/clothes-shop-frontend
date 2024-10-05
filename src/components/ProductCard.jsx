@@ -26,7 +26,10 @@ const ProductCard = ({ product }) => {
                 )}
 
                 <div className="absolute bottom-2 right-2">
-                    <button className="group relative flex h-[30px] w-[30px] items-center justify-center rounded-[20px] bg-black transition-all duration-100 hover:w-[125px]">
+                    <a
+                        href={`/products/${product.id}`}
+                        className="group relative flex h-[30px] w-[30px] items-center justify-center rounded-[20px] bg-black transition-all duration-100 hover:w-[125px]"
+                    >
                         <span className="mr-[10px] hidden w-max pl-[10px] text-[13px] text-white transition-none group-hover:block">
                             Thêm vào giỏ
                         </span>
@@ -47,7 +50,7 @@ const ProductCard = ({ product }) => {
                                 />
                             </svg>
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

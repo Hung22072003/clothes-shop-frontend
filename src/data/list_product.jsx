@@ -1,0 +1,36 @@
+export default [
+    {
+        id: 1,
+        name: 'Áo khoác ICONDENIM Signature Monogram Windbreaker',
+        sell_price: 144000,
+        original_price: 480000,
+        discount: 70,
+        image: 'src/assets/product_1.webp',
+        label: 'Hàng Mới',
+    },
+    {
+        id: 2,
+        name: 'Áo khoác ICONDENIM Signature Monogram Windbreaker',
+        sell_price: 144000,
+        original_price: 480000,
+        discount: 70,
+        image: 'src/assets/product_1.webp',
+        label: 'Hàng Mới',
+    },
+    {
+        id: 3,
+        name: 'Áo khoác ICONDENIM Signature Monogram Windbreaker',
+        sell_price: 144000,
+        original_price: 480000,
+        discount: 70,
+        image: 'src/assets/product_1.webp',
+    },
+    {
+        id: 4,
+        name: 'Áo khoác ICONDENIM Signature Monogram Windbreaker',
+        sell_price: 144000,
+        original_price: 480000,
+        discount: 70,
+        image: 'src/assets/product_1.webp',
+    },
+];
