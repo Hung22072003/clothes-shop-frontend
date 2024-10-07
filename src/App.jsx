@@ -34,7 +34,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/collections/:collectionId" element={<Collection />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route
+                        path="/cart"
+                        element={<Cart numberOfCarts={numberOfCarts} setNumberOfCarts={setNumberOfCarts} />}
+                    />
                     <Route path="/search" element={<Search />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/products/:productId" element={<Product setNumberOfCarts={setNumberOfCarts} />} />

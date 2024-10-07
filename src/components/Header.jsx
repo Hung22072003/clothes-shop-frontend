@@ -398,7 +398,7 @@ const Header = ({ cartVisible, setCartVisible, searchVisible, setSearchVisible, 
                                                         </li>
                                                         <li className="flex items-center justify-between py-[3px] font-semibold">
                                                             <a
-                                                                href=""
+                                                                href="/cart"
                                                                 className="inline-block overflow-hidden border-[1px] border-black bg-white p-[13px_35px] text-center text-[12px] font-bold uppercase hover:bg-black hover:text-white"
                                                             >
                                                                 Chỉnh sửa giỏ hàng

@@ -186,7 +186,7 @@ const Product = ({ setNumberOfCarts }) => {
             name: product.name,
             color: product.colors.find((color) => color.id === currentColor).name,
             size: choiceSize,
-            image: product.images[0],
+            image: product.colors.find((color) => color.id === currentColor).image,
             sell_price: product.sell_price,
             original_price: product.original_price,
             quantity: quantity,
